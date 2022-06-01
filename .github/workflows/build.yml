@@ -27,9 +27,6 @@ jobs:
       - name: Build app
         run: yarn build
 
-      - name: Run serve
-        run: serve -s build
-
       - name: Cypress Run
         uses: cypress-io/github-action@v2
         with:
