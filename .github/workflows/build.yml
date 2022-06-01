@@ -24,7 +24,7 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
-      - name: Install dependencies
+      - name: Build app
         run: yarn build
 
       - name: Run serve
@@ -34,3 +34,4 @@ jobs:
         uses: cypress-io/github-action@v2
         with:
           install: false
+          start: serve -s build
