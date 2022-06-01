@@ -2,6 +2,9 @@ name: CI
 
 on:
   workflow_dispatch:
+  
+env:
+  IS_ACTIVE: true
 
 jobs:
   cypress-run:
