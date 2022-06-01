@@ -1,6 +1,5 @@
-const isBuild = process.env.REACT_APP_IS_BUILD;
-
 describe("Home", () => {
+  const isBuild = Cypress.env("is_build");
   it(`should render correctly ${isBuild ? "in build" : "in dev"}`, () => {
     cy.visit("http://localhost:3000");
 
