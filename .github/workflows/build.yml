@@ -3,8 +3,6 @@ name: CI
 on:
   workflow_dispatch:
   
-env:
-  REACT_APP_IS_BUILD: true
 
 jobs:
   cypress-run:
@@ -32,6 +30,8 @@ jobs:
 
       - name: Cypress Run
         uses: cypress-io/github-action@v2
+        env:
+          CYPRESS_is_build: true
         with:
           install: false
           start: serve -s build
