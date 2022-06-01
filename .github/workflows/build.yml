@@ -34,4 +34,4 @@ jobs:
         uses: cypress-io/github-action@v2
         with:
           install: false
-          start: serve -s build
+          start: "IS_BUILD=$IS_BUILD serve -s build"
