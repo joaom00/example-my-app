@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   
 env:
-  IS_BUILD: true
+  REACT_APP_IS_BUILD: true
 
 jobs:
   cypress-run:
@@ -34,4 +34,4 @@ jobs:
         uses: cypress-io/github-action@v2
         with:
           install: false
-          start: "IS_BUILD=$IS_BUILD serve -s build"
+          start: serve -s build
