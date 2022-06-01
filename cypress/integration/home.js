@@ -1,4 +1,4 @@
-const isBuild = process.env.IS_BUILD;
+const isBuild = process.env.REACT_APP_IS_BUILD;
 
 describe("Home", () => {
   it(`should render correctly ${isBuild ? "in build" : "in dev"}`, () => {
