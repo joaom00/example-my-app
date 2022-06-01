@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  workflow_dispatch:
+
+jobs:
+  cypress-run:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [16]
+    steps:
+      - name: Checkout Commit
+        uses: actions/checkout@v2
+
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node }}
+      
+      - name: Install serve
+        run: yarn global add serve
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Install dependencies
+        run: yarn build
+
+      - name: Run serve
+        run: serve -s build
+
+      - name: Cypress Run
+        uses: cypress-io/github-action@v2
+        with:
+          install: false
