@@ -45,4 +45,4 @@ jobs:
       - name: Cypress Run
         uses: cypress-io/github-action@v2
         env:
-          CYPRESS_BASE_URL: fromJson(steps.await-vercel.outputs.deploymentDetails).url
+          CYPRESS_BASE_URL: https://${{ fromJson(steps.await-vercel.outputs.deploymentDetails).url }}
