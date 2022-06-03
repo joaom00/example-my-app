@@ -7,11 +7,15 @@ on:
       - 'main'
   
 
-jobs:
-  wait-for-vercel-deployment:
-    runs-on: ubuntu-18.04
+jobs: 
+  cypress-run:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [16]
     steps:
-      - uses: UnlyEd/github-action-await-vercel@v1.2.14
+      - name: Wait for Vercel
+        uses: UnlyEd/github-action-await-vercel@v1.2.14
         id: await-vercel
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
@@ -21,12 +25,7 @@ jobs:
 
       - name: Display deployment status
         run: "echo The deployment at ${{ fromJson(steps.await-vercel.outputs.deploymentDetails).url }} is ${{ fromJson(steps.await-vercel.outputs.deploymentDetails).readyState }}"
-  cypress-run:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node: [16]
-    steps:
+        
       - name: Checkout Commit
         uses: actions/checkout@v2
 
