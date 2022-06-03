@@ -25,13 +25,13 @@ jobs:
       - name: Display deployment status
         run: "echo The deployment at ${{ fromJson(steps.await-vercel.outputs.deploymentDetails).url }} is ${{ fromJson(steps.await-vercel.outputs.deploymentDetails).readyState }}"
 
-      # - name: Checkout Commit
-      #   uses: actions/checkout@v2
+      - name: Checkout Commit
+        uses: actions/checkout@v2
 
-      # - name: Setup Node
-      #   uses: actions/setup-node@v1
-      #   with:
-      #     node-version: ${{ matrix.node }}
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node }}
 
       # - name: Install serve
       #   run: yarn global add serve
