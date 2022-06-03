@@ -4,10 +4,9 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - 'main'
-  
+      - "main"
 
-jobs: 
+jobs:
   cypress-run:
     runs-on: ubuntu-latest
     strategy:
@@ -25,28 +24,25 @@ jobs:
 
       - name: Display deployment status
         run: "echo The deployment at ${{ fromJson(steps.await-vercel.outputs.deploymentDetails).url }} is ${{ fromJson(steps.await-vercel.outputs.deploymentDetails).readyState }}"
-        
-      - name: Checkout Commit
-        uses: actions/checkout@v2
 
-      - name: Setup Node
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node }}
-      
-      - name: Install serve
-        run: yarn global add serve
+      # - name: Checkout Commit
+      #   uses: actions/checkout@v2
 
-      - name: Install dependencies
-        run: yarn install
+      # - name: Setup Node
+      #   uses: actions/setup-node@v1
+      #   with:
+      #     node-version: ${{ matrix.node }}
 
-      - name: Build app
-        run: yarn build
+      # - name: Install serve
+      #   run: yarn global add serve
+
+      # - name: Install dependencies
+      #   run: yarn install
+
+      # - name: Build app
+      #   run: yarn build
 
       - name: Cypress Run
         uses: cypress-io/github-action@v2
         env:
-          CYPRESS_is_build: true
-        with:
-          install: false
-          start: serve -s build
+          CYPRESS_BASE_URL: fromJson(steps.await-vercel.outputs.deploymentDetails).url
