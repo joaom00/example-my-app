@@ -33,4 +33,4 @@ jobs:
       - name: Cypress Run
         uses: cypress-io/github-action@v2
         env:
-          CYPRESS_BASE_URL: https://example-my-app.vercel.app
+          CYPRESS_baseUrl: https://example-my-app.vercel.app
