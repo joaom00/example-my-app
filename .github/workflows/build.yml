@@ -13,17 +13,6 @@ jobs:
       matrix:
         node: [16]
     steps:
-      - name: Wait for Vercel
-        uses: UnlyEd/github-action-await-vercel@v1.2.14
-        id: await-vercel
-        env:
-          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-        with:
-          deployment-url: example-my-app.vercel.app # TODO Replace by the domain you want to test
-          timeout: 90 # Wait for 10 seconds before failing
-
-      - name: Display deployment status
-        run: "echo The deployment at ${{ fromJson(steps.await-vercel.outputs.deploymentDetails).url }} is ${{ fromJson(steps.await-vercel.outputs.deploymentDetails).readyState }}"
       - name: Checkout Commit
         uses: actions/checkout@v2
 
@@ -44,4 +33,4 @@ jobs:
       - name: Cypress Run
         uses: cypress-io/github-action@v2
         env:
-          CYPRESS_BASE_URL: https://${{ fromJson(steps.await-vercel.outputs.deploymentDetails).url }}
+          CYPRESS_BASE_URL: https://example-my-app.vercel.app
