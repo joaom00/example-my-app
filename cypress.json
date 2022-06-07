@@ -1,7 +1,6 @@
 {
   "video": false,
   "env": {
-    "BASE_URL": "http://localhost:3000",
-    "is_build": false
+    "baseUrl": "http://localhost:3000"
   }
 }
