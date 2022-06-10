@@ -34,5 +34,10 @@ jobs:
 
       - name: Cypress Run
         uses: cypress-io/github-action@v2
+        with:
+          record: true
         env:
           CYPRESS_baseUrl: https://example-my-app.vercel.app
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CYPRESS_PROJECT_ID: ${{ secrets.PROJECT_ID }}
